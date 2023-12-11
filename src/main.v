@@ -19,6 +19,18 @@ module main (
     reg alu_output_select;
     reg [7:0] alu_input_1, alu_input_2;
 
+    reg [7:0] decoders_inputs_instructions_inputs;
+    wire [3:0] decoders_opcodes;
+    wire decoders_is_using_acc_as_outputs;
+    wire [3:0] decoders_immediates;
+
+    decoder dec(
+        .instructions_ports(decoders_inputs_instructions_inputs),
+        .opcodes_outputs(decoders_opcodes),
+        .immediates_outputs(decoders_immediates),
+        .outputs_selectors(decoders_is_using_acc_as_outputs)
+    );
+
     alu the_alu(
         .output_1 (alu_result_wire),
         .alu_component_select (alu_component_select),
@@ -35,6 +47,27 @@ module main (
         .write_bit(reg_write_bit),
         .write_port(reg_write)
     );
+
+    always @(alu_result_wire) begin
+        alu_result = alu_result_wire;
+    end
+
+    /* connecting decoders, alus, and registers */
+    always @(*) begin
+        alu_input_1 = reg_read;
+        alu_input_2 = decoders_immediates;
+        alu_component_select = decoders_opcodes;
+    end
+    always @(*) begin
+        reg_write_bit = decoders_is_using_acc_as_outputs;
+        reg_write = alu_result;
+    end
+    always @(*) begin
+        decoders_inputs_instructions_inputs = IN0;
+    end
+
+    assign OUT0 = alu_result;
+    assign OUT1 = reg_read;
 
     // alu_result = alu_result_wire;
 

@@ -3,12 +3,14 @@ module decoder (
     // ports
     instructions_ports,
     opcodes_outputs,
+    immediates_outputs,
     outputs_selectors
 );
 
     input [7:0] instructions_ports;
     output [3:0] opcodes_outputs;
-    output [3:0] outputs_selectors;
+    output outputs_selectors;
+    output [3:0] immediates_outputs;
 
     reg [3:0] opcodes;
     reg [3:0] immediates;
@@ -17,6 +19,7 @@ module decoder (
 
     assign opcodes_outputs = instructions;
     assign outputs_selectors = is_using_acc;
+    assign immediates_outputs = immediates;
 
     initial begin
         opcodes = 0;
