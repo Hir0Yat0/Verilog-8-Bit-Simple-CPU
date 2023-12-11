@@ -2,8 +2,8 @@
 module accumulator (
     // ports
     clk,
-    write_bit,
     read_port,
+    write_bit,
     write_port
 );
     input clk, write_bit, write_port;

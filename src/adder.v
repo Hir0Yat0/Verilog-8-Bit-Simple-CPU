@@ -1,9 +1,9 @@
 
 module adder (
     // ports
+    output_1
     input_1,
     input_2,
-    output_1
 );
 
     // 8 bits inputs outputs
