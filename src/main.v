@@ -19,13 +19,25 @@ module main (
     reg alu_output_select;
     reg [7:0] alu_input_1, alu_input_2;
 
-    reg [7:0] decoders_inputs_instructions_inputs;
+    // reg [7:0] decoders_inputs_instructions_inputs;
     wire [3:0] decoders_opcodes;
     wire decoders_is_using_acc_as_outputs;
     wire [3:0] decoders_immediates;
 
+    assign OUT0 = alu_result_wire;
+    assign OUT1 = reg_read;
+
+    always @(*) begin
+        $display("alu_results_wires:[0b%b]",alu_result_wire);
+        $display("reg_read:[0b%b]",reg_read);
+        $display("reg_write:[0b%b]",reg_write);
+        $display("reg_write_bit:[0b%b]",reg_write_bit);
+        // #10;
+    end
+
     decoder dec(
-        .instructions_ports(decoders_inputs_instructions_inputs),
+        // .instructions_ports(decoders_inputs_instructions_inputs),
+        .instructions_ports(IN0),
         .opcodes_outputs(decoders_opcodes),
         .immediates_outputs(decoders_immediates),
         .outputs_selectors(decoders_is_using_acc_as_outputs)
@@ -48,26 +60,37 @@ module main (
         .write_port(reg_write)
     );
 
-    always @(alu_result_wire) begin
-        alu_result = alu_result_wire;
-    end
+    // always @(*) begin
+    //     alu_result = alu_result_wire;
+    //     // #10;
+    // end
 
     /* connecting decoders, alus, and registers */
     always @(*) begin
+        // decoders_inputs_instructions_inputs = IN0;
+        // $display("decoders Instructions:[0b%b]",decoders_inputs_instructions_inputs);
+        $display("decoders Instructions:[0b%b]",IN0);
         alu_input_1 = reg_read;
         alu_input_2 = decoders_immediates;
         alu_component_select = decoders_opcodes;
-    end
-    always @(*) begin
+        alu_result = alu_result_wire;
         reg_write_bit = decoders_is_using_acc_as_outputs;
         reg_write = alu_result;
+        #10;
     end
-    always @(*) begin
-        decoders_inputs_instructions_inputs = IN0;
-    end
+    // always @(*) begin
+        // reg_write_bit = decoders_is_using_acc_as_outputs;
+        // reg_write = alu_result;
+        // #10;
+    // end
+    // always @(*) begin
+        // decoders_inputs_instructions_inputs = IN0;
+        // $display("decoders Instructions:[0b%b]",decoders_inputs_instructions_inputs);
+        // #10;
+    // end
 
-    assign OUT0 = alu_result;
-    assign OUT1 = reg_read;
+    // assign OUT0 = alu_result;
+    // assign OUT1 = reg_read;
 
     // alu_result = alu_result_wire;
 

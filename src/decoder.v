@@ -21,12 +21,12 @@ module decoder (
     assign outputs_selectors = is_using_acc;
     assign immediates_outputs = immediates;
 
-    initial begin
-        opcodes = 0;
-        immediates = 0;
-        is_using_acc = 0;
-        instructions = 0;
-    end
+    // initial begin
+    //     opcodes = 0;
+    //     immediates = 0;
+    //     is_using_acc = 0;
+    //     instructions = 0;
+    // end
 
     /* decodes instructions */
     always @(instructions_ports) begin
