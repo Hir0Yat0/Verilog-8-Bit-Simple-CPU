@@ -9,7 +9,7 @@ module alu (
 
 );
 
-    input alu_component_select;
+    input [3:0] alu_component_select;
     input [7:0] input_1, input_2;
     output [7:0] output_1;
 
@@ -32,12 +32,12 @@ module alu (
     always @(*) begin
         
         case (alu_component_select)
-            1'b0: adder add(
+            3'b000: adder add(
                 .output_1 result,
                 .input_1 input_1,
                 .input_2 input_2 
                 ); 
-            1'b1: multer mult(
+            3'b001: multer mult(
                 .output_1 result,
                 .input_1 input_1,
                 .input_2 input_2

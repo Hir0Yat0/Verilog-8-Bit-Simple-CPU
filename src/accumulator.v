@@ -1,7 +1,7 @@
 
 module accumulator (
     // ports
-    clk,
+    // clk,
     read_port,
     write_bit,
     write_port
@@ -17,7 +17,7 @@ module accumulator (
 
     assign read_port = val
 
-    always @(posedge clk) begin
+    always @(/*posedge clk*/*) begin
         if (write_bit) begin
             val = write_port
         end
