@@ -15,6 +15,17 @@ module alu (
 
     reg [7:0] result;
 
+    reg [7:0] add_result;
+    wire [7:0] add_result_wire;
+    reg [7:0] mult_result;
+    wire [7:0] mult_result_wire;
+    reg [7:0] and_result;
+    wire [7:0] and_result_wire;
+    reg [7:0] or_result;
+    wire [7:0] or_result_wire;
+    reg [7:0] not_result;
+    wire [7:0] not_result_wire;
+
     // adder add(
     //     .output_1 result,
     //     .input_1 input_1,
@@ -27,40 +38,50 @@ module alu (
     //     .input_2 input_2
     // );
 
+    adder ALU_ADD(
+        .output_1 (add_result_wire),
+        .input_1 (input_1),
+        .input_2 (input_2) 
+    ); 
+
+    multer ALU_MULT(
+        .output_1 (mult_result_wire),
+        .input_1 (input_1),
+        .input_2 (input_2)
+    );
+
+    and_gate ALU_AND(
+        .out (and_result_wire),
+        .a (input_1),
+        .b (input_2)
+    ) ;
+
+    or_gate ALU_OR(
+        .out (or_result_wire),
+        .a (input_1),
+        .b (input_2)
+    );
+
+    not_gate ALU_NOT(
+        .out (not_result_wire),
+        .in (input_1)
+    );
+
     /* currently supports only add, multiply, and, or , not add */    
     /* im pretty sure always @(*) check for any dependency inside blocks changes */
     always @(*) begin
         
         case (alu_component_select)
             3'b000: 
-                adder add(
-                    .output_1 result,
-                    .input_1 input_1,
-                    .input_2 input_2 
-                ); 
+                result = add_result_wire;
             3'b001:
-                multer mult(
-                    .output_1 result,
-                    .input_1 input_1,
-                    .input_2 input_2
-                );
+                result = mult_result_wire;
             3'b010:
-                and_gate and(
-                    .out result,
-                    .a input_1,
-                    .b input_2,
-                ) ;
+                result = and_result_wire;
             3'b011:
-                or_gate or(
-                    .out result,
-                    .a input_1,
-                    .b input_2,
-                );
+                result = or_result_wire;
             3'b100:
-                not_gate not(
-                    .out result,
-                    .in input_1,
-                );
+                result = not_result_wire;
             // 3'b101:
             // 3'b110:
             // 3'b111:

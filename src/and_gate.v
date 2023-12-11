@@ -6,8 +6,8 @@ module and_gate (
     b,
 );
 
-    input a, b;
-    output out;
+    input [7:0] a, b;
+    output [7:0] out;
 
     assign out = a & b;
     
