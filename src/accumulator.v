@@ -6,8 +6,9 @@ module accumulator (
     write_bit,
     write_port
 );
-    input write_bit, write_port;
-    output read_port;
+    input write_bit;
+    input [7:0] write_port;
+    output [7:0] read_port;
 
     reg [7:0] val;
 
