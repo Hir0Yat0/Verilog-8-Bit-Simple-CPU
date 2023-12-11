@@ -1,9 +1,18 @@
 
 module main (
     // ports
-
+    IN0,
+    IN1,
+    IN2,
+    OUT0,
+    OUT1,
+    OUT2
 
 );
+    /* inputs outputs of the main boards */
+    input [7:0] IN0, IN1, IN2;
+    output [7:0] OUT0, OUT1, OUT2;
+
     reg [7:0] alu_result;
     wire [7:0] alu_result_wire;
     reg [3:0] alu_component_select;
@@ -28,7 +37,11 @@ module main (
     );
 
     // alu_result = alu_result_wire;
+
+
+
     /* tests */
+    /* alu tests */
     // initial begin
     //     $display("");
     //     /* add 0 + 1 */
@@ -115,47 +128,47 @@ module main (
     // end
 
     /* register tests */
-    initial begin
+    // initial begin
 
-        $display("");
+    //     $display("");
 
-        reg_write = 8'b00000000;
-        reg_write_bit = 1'b0;
-        #10;
-        $display("Expected:[0b00000000]");
-        $display("ACC:[0b%b]",reg_read);
-        #10;
-        reg_write = 8'b00000001;
-        reg_write_bit = 1'b0;
-        #10;
-        $display("Expected:[0b00000000]");
-        $display("ACC:[0b%b]",reg_read);
-        #10;
-        reg_write = 8'b00000001;
-        reg_write_bit = 1'b1;
-        #10;
-        $display("Expected:[0b00000001]");
-        $display("ACC:[0b%b]",reg_read);
-        #10;
-        reg_write = 8'b00000000;
-        reg_write_bit = 1'b0;
-        #10;
-        $display("Expected:[0b00000001]");
-        $display("ACC:[0b%b]",reg_read);
-        #10;
-        reg_write = 8'b00001111;
-        reg_write_bit = 1'b1;
-        #10;
-        $display("Expected:[0b00001111]");
-        $display("ACC:[0b%b]",reg_read);
-        #10;
-        reg_write = 8'b00001111;
-        reg_write_bit = 1'b1;
-        #10;
-        $display("Expected:[0b00001111]");
-        $display("ACC:[0b%b]",reg_read);
-        #10;
-    end
+    //     reg_write = 8'b00000000;
+    //     reg_write_bit = 1'b0;
+    //     #10;
+    //     $display("Expected:[0b00000000]");
+    //     $display("ACC:[0b%b]",reg_read);
+    //     #10;
+    //     reg_write = 8'b00000001;
+    //     reg_write_bit = 1'b0;
+    //     #10;
+    //     $display("Expected:[0b00000000]");
+    //     $display("ACC:[0b%b]",reg_read);
+    //     #10;
+    //     reg_write = 8'b00000001;
+    //     reg_write_bit = 1'b1;
+    //     #10;
+    //     $display("Expected:[0b00000001]");
+    //     $display("ACC:[0b%b]",reg_read);
+    //     #10;
+    //     reg_write = 8'b00000000;
+    //     reg_write_bit = 1'b0;
+    //     #10;
+    //     $display("Expected:[0b00000001]");
+    //     $display("ACC:[0b%b]",reg_read);
+    //     #10;
+    //     reg_write = 8'b00001111;
+    //     reg_write_bit = 1'b1;
+    //     #10;
+    //     $display("Expected:[0b00001111]");
+    //     $display("ACC:[0b%b]",reg_read);
+    //     #10;
+    //     reg_write = 8'b00001111;
+    //     reg_write_bit = 1'b1;
+    //     #10;
+    //     $display("Expected:[0b00001111]");
+    //     $display("ACC:[0b%b]",reg_read);
+    //     #10;
+    // end
 
 endmodule
 
