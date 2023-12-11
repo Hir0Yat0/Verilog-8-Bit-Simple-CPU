@@ -5,6 +5,7 @@ ComArch2023 Projects \
 ./run.sh = run \
 ./start.sh = compile and run
 
-- the alu is working now,
-- the accumulator / register should be working (havent tested, but it compiled, so...)
+- the alu is working now!
+- ~~the accumulator / register should be working (havent tested, but it compiled, so...)~~
+- the accumulators / registers are working now, tested! nice!
 - have not implemented the decoder yet (but the basic ones should be fairly straightforward and simple to make?)
