@@ -1,7 +1,8 @@
 # Verilog-8-Bit-Simple-CPU
-ComArch2023 Projects
-./compile.sh = compile
-./run.sh = run
+ComArch2023 Projects \
+
+./compile.sh = compile \
+./run.sh = run \
 ./start.sh = compile and run
 
 - the alu is working now,
