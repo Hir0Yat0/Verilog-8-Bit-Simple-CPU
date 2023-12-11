@@ -1,7 +1,7 @@
 
 module alu (
     // ports
-    clk,
+    // clk,
     alu_component_select,
     input_1,
     input_2,
@@ -10,8 +10,8 @@ module alu (
 );
 
     /* currently supports only add, multiply, and not add */    
-
-    always @(posedge clk) begin
+    /* im pretty sure always @(*) check for any dependency inside blocks changes */
+    always @(*) begin
         
     end
 
